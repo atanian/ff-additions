@@ -1,4 +1,7 @@
 
+options=
+	characters:
+		exclude: []
 
 
 class Story
@@ -19,6 +22,12 @@ class ListPage
 		$stories = $('.z-list')
 		@stories = (new Story($(story)) for story in $stories)
 
+		@excludeCharacters()
+
+	excludeCharacters: ->
+		for story in @stories
+			for char in options.characters.exclude
+				story.el.remove() if story.containsCharacter char
 
 
 jQuery ->
