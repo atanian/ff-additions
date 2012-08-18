@@ -1,12 +1,23 @@
 
 
+
+class Story
+
+	el: null
+	meta: ""
+	constructor: (@el) ->
+		@meta = @el.find('.z-padtop2').html()
+
+	containsCharacter: (character) ->
+		@meta.indexOf(character) != -1
+
 class ListPage 
 
 	stories: []
 	characters = []
 	constructor: ->
-		@stories = $('.z-list')
-		console.log @stories
+		$stories = $('.z-list')
+		@stories = (new Story($(story)) for story in $stories)
 
 
 
